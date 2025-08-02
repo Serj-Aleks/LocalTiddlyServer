@@ -18,3 +18,12 @@ Local Tiddlywiki server on Go-Rye with implementation of Tiddlywiki principles
 5. TiddlyWiki file parsing, searching and indexing are performed using Rye.
 6. Naturally, it should be possible to delete TiddlyWiki files and download them by URL, including empty TiddlyWiki files with the latest version on tiddlywiki.com
 7. The server as an application should be like a browser extension, when the local host with the server application is automatically launched by the icon. It should be possible to automatically upgrade the core of the TiddlyWiki file to the latest version by clicking the appropriate button (without manually dragging it to https://tiddlywiki.com/upgrade.html and then saving it).
+
+Bots will do the coding. I don't know how useful it will be to point to projects as prototypes:
+
+* https://github.com/tiddlyhost/tiddlyhost-com
+* https://github.com/cs8425/tiddlywikid
+* https://github.com/K4rian/twserver-go
+* https://github.com/rsc/tiddly
+
+There is a suspicion that this may be confusing.
