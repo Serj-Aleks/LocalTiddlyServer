@@ -9,7 +9,7 @@ Local Tiddlywiki server on Go-Rye with implementation of Tiddlywiki principles
 
 **LPTWS** - local personal server for organizing Tiddlywiki files and searching through all tiddlers in them, as well as with the maximum implementation of all Tiddlywiki principles in the project. A project for studying and experimenting with technologies - Go, Rye, ASON and Tiddlywiki.
 
-**Спецификация**
+**Specification**
 
 1. Local server means that all our Tiddlywiki files are stored in certain controlled places of the OS file system on the computer. Optimally, in one folder - TiddlyWikiFiles. Since I use ChromeOS Flex and the LPTWS project folder should be stored in the "Linux Files" folder, it is natural that "Linux Files" -> LPTWS -> TiddlyWikiFiles . This is the first aspect of the project configuration.
 2. To search through all tiddlers, it is also natural to select all tiddlers that will be searched. "All tiddlers" means "tiddlers of the user or author of the TiddlyWiki file", respectively without shadow or system tiddlers, plugins and special types such as images and so on. Again, it would be possible to put all such selected tiddlers in one folder, but then an additional tag would have to be entered for each tiddler to demonstrate its belonging to a certain TiddlyWiki file. An alternative option is folders for each wiki file, i.e. - tiddlers -> TWF ...
