@@ -28,4 +28,5 @@ Bots will do the coding. I don't know how useful it will be to point to projects
 
 There is a suspicion that this may be confusing.
 
-I will use ten bots and describe the results for each one separately in retrospect, but before posting the code as in the blog, I will describe the interaction process for each bot separately in the wiki. The wiki is in Russian, because it is easier for me, so that the process goes faster. If suddenly someone is really interested, it is not a problem to translate now.
+I will use ten bots and describe the results for each one separately in retrospect, but before posting the code as in the blog, I will describe the interaction process for each bot separately in the [wiki](https://github.com/Serj-Aleks/LocalTiddlyServer/wiki/LocalTiddlyServer-%D1%81-%D0%B4%D0%B5%D1%81%D1%8F%D1%82%D1%8C%D1%8E-%D0%B1%D0%BE%D1%82%D0%B0%D0%BC%D0%B8)
+. The wiki is in Russian, because it is easier for me, so that the process goes faster. If suddenly someone is really interested, it is not a problem to translate now.
