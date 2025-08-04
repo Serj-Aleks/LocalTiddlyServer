@@ -27,3 +27,5 @@ Bots will do the coding. I don't know how useful it will be to point to projects
 * https://github.com/rsc/tiddly
 
 There is a suspicion that this may be confusing.
+
+I will use ten bots and describe the results for each one separately in retrospect, but before posting the code as in the blog, I will describe the interaction process for each bot separately in the wiki. The wiki is in Russian, because it is easier for me, so that the process goes faster. If suddenly someone is really interested, it is not a problem to translate now.
