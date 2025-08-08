@@ -36,16 +36,26 @@ In the process of compiling a single promt for all bots and experimenting with t
 ---
 
 Your Role: You are an elite system architect and full-stack developer specializing in Go, Ryelang, and building high-performance native web applications. Your task is to create and deliver a complete, production-ready project from scratch based on the following comprehensive technical specifications. You must generate all the code, file structure, installation scripts, and documentation in one go, without asking any follow-up questions.
+
 End Goal: Provide a non-programmer with a complete TiddlyWiki Hub application that installs with a single script and is immediately ready to use. It should be a powerful yet intuitive tool for managing a personal knowledge base.
+
 Architecture and Tech Stack
+
 Backend: Pure Go (Golang). Libraries used: only the standard library, gorilla/websocket for web sockets, and chromedp for headless interaction with the browser (updating the kernel, creating screenshots).
+
 Scripts and data logic: Ryelang.
+
 Frontend: Pure HTML5, CSS3, and JavaScript (ES6+). No external frameworks (React, Vue, Node.js, etc.) allowed.
+
 Data format: TiddlyWiki .html for storage, .ason for search index.
+
 Go <-> Ryelang interaction: Go calls Ryelang scripts as external processes (exec.Command). Ryelang returns JSON results for data exchange.
+
 Backend <-> Frontend interaction: REST API for data and one WebSocket connection for lifecycle tracking.
 
 Project Structure (Must follow)
+
+```
 /TiddlyLauncher/
 |-- tiddlyhub # Compiled Go binary
 |-- main.go # Server source code in Go
@@ -69,14 +79,20 @@ Project Structure (Must follow)
 |-- install.sh # Installation script for Linux/macOS/ChromeOS
 |-- install.ps1 # Installation script for Windows
 |-- README.md # Full documentation
+```
+
 Detailed functional requirements
-3.1. Application lifecycle:
+Application lifecycle:
 
 Startup: The application is started as a single local process via a shortcut. The go server starts on localhost:8080 and immediately opens this page in the browser.
 Automatic termination: Implement a reliable shutdown mechanism:
+
 Primary: Establish a WebSocket connection (/ws). When it is broken (tab is closed), the server waits 2 seconds and exits (os.Exit(0)).
+
 Backup: JS logic window.onunload sends navigator.sendBeacon('/api/exit', '') to notify the server about closing.
-3.2. Web Interface (Two-Column Layout):
+
+Web Interface (Two-Column Layout):
+
 Layout: The interface should be two-column.
 Left column (Main area): This is the "story river" where open tiddlers from the selected TiddlyWiki file are displayed.
 Right Column (Menu/Sidebar): This is the control panel. It contains:
@@ -84,14 +100,20 @@ A list of all available TiddlyWiki files.
 A search bar/Ryelang console.
 A URL import bar.
 A search results area.
+
 Tiddler interactivity: Implement an "expand" mechanism. Each tiddler in the left column should have a button icon (e.g. '⤢') in its header. When clicked, the div of that tiddler should smoothly expand to 100% of the window width, visually covering the right column. Clicking it again returns the tiddler to its original width, showing the right column again.
+
 Search bar/Ryelang console:
 A single input line in the right column. Plain text starts a search. Text with the rye> prefix is executed as a Ryelang command.
+
 Search results: Search does more than just filter files. It displays a list of found results in the right column, under the search bar. Each result should contain:
 The name of the source file.
 The title of the found tiddler.
+
 Snippet: A fragment of text with the found word highlighted.
-3.3. Backend API and Logic in Go:
+
+Backend API and Logic in Go:
+
 GET /api/wikis: Returns a JSON array with deep meta information about each file:
 filename: File name.
 title, subtitle: from the <title> tag.
@@ -105,12 +127,15 @@ POST /api/import: Accepts a URL for import.
 GET /api/screenshot/{filename}: (Stub function) Uses chromedp to create a screenshot preview of the html file and saves it to data/cache/screenshots/.
 POST /api/publish/{filename}: (Stub function) Placeholder for future integration with Tiddlyhost API.
 
-3.4. Ryelang logic:
+Ryelang logic:
 indexer.rye: Accepts a path to an .html file. Parses it, extracts all tiddlers, their tags, determines the kernel version and saves all this information to the corresponding .ason file.
 search.rye: Accepts a search query (including in:, tag: tags). Searches all .ason files in the directory, forms JSON with results ready for generating snippets.
 Installer and documentation requirements
-4.1. Installation scripts (install.sh and install.ps1):
+
+Installation scripts (install.sh and install.ps1):
+
 Do not require root/administrator rights.
+
 Automate everything:
 Check for Go and Ryelang. If they are not there, notify the user.
 Create a ~/TiddlyLauncher directory.
@@ -119,7 +144,8 @@ Compile Go code (go build).
 Create a launcher shortcut (.desktop for Linux/ChromeOS Flex).
 Adaptation to x86/ARM architecture must be taken into account (e.g. via compilation flags).
 
-4.2. Documentation (README.md):
+Documentation (README.md):
+
 For the user: Step-by-step installation instructions, detailed description of each interface function, examples of complex search queries and Ryelang commands.
 For the developer: Brief description of the architecture and all API endpoints.
 
