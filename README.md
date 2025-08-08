@@ -94,59 +94,70 @@ Backup: JS logic window.onunload sends navigator.sendBeacon('/api/exit', '') to 
 Web Interface (Two-Column Layout):
 
 Layout: The interface should be two-column.
-Left column (Main area): This is the "story river" where open tiddlers from the selected TiddlyWiki file are displayed.
-Right Column (Menu/Sidebar): This is the control panel. It contains:
-A list of all available TiddlyWiki files.
-A search bar/Ryelang console.
-A URL import bar.
-A search results area.
+
+- Left column (Main area): This is the "story " where open tiddlers from the selected TiddlyWiki file are displayed.
+- Right Column (Menu/Sidebar): This is the control panel. It contains:
+
+- A list of all available TiddlyWiki files.
+- A search bar/Ryelang console.
+- A URL import bar.
+- A search results area.
 
 Tiddler interactivity: Implement an "expand" mechanism. Each tiddler in the left column should have a button icon (e.g. '⤢') in its header. When clicked, the div of that tiddler should smoothly expand to 100% of the window width, visually covering the right column. Clicking it again returns the tiddler to its original width, showing the right column again.
 
-Search bar/Ryelang console:
-A single input line in the right column. Plain text starts a search. Text with the rye> prefix is executed as a Ryelang command.
+Search bar/Ryelang console: A single input line in the right column. Plain text starts a search. Text with the rye> prefix is executed as a Ryelang command.
 
 Search results: Search does more than just filter files. It displays a list of found results in the right column, under the search bar. Each result should contain:
-The name of the source file.
-The title of the found tiddler.
+
+- The name of the source file.
+- The title of the found tiddler.
 
 Snippet: A fragment of text with the found word highlighted.
 
 Backend API and Logic in Go:
 
 GET /api/wikis: Returns a JSON array with deep meta information about each file:
-filename: File name.
-title, subtitle: from the <title> tag.
-core_version: Core version extracted from the tiddler $:/core.
-tiddler_count: Total number of tiddlers.
-top_tags: An array of the 5 most popular tags inside the file.
-favicon_path: Local path to the cached favicon.
+
+- filename: File name.
+- title, subtitle: from the <title> tag.
+- core_version: Core version extracted from the tiddler $:/core.
+- tiddler_count: Total number of tiddlers.
+- top_tags: An array of the 5 most popular tags inside the file.
+- favicon_path: Local path to the cached favicon.
+
 GET /api/search?q={query}: Accepts the query. Calls search.rye. Should be able to handle complex searches (e.g. in:work tag:project term). Returns JSON with structured results for displaying snippets.
+
 POST /api/upgrade/{filename}: Key function. Uses chromedp to automate the upgrade process. Logic: download a new empty.html, run it in a headless browser, programmatically import all tiddlers from the user's old file into it, and save the result.
+
 POST /api/import: Accepts a URL for import.
+
 GET /api/screenshot/{filename}: (Stub function) Uses chromedp to create a screenshot preview of the html file and saves it to data/cache/screenshots/.
+
 POST /api/publish/{filename}: (Stub function) Placeholder for future integration with Tiddlyhost API.
 
 Ryelang logic:
-indexer.rye: Accepts a path to an .html file. Parses it, extracts all tiddlers, their tags, determines the kernel version and saves all this information to the corresponding .ason file.
-search.rye: Accepts a search query (including in:, tag: tags). Searches all .ason files in the directory, forms JSON with results ready for generating snippets.
+
+- indexer.rye: Accepts a path to an .html file. Parses it, extracts all tiddlers, their tags, determines the kernel version and saves all this information to the corresponding .ason file.
+- search.rye: Accepts a search query (including in:, tag: tags). Searches all .ason files in the directory, forms JSON with results ready for generating snippets.
+
 Installer and documentation requirements
 
 Installation scripts (install.sh and install.ps1):
 
-Do not require root/administrator rights.
+- Do not require root/administrator rights.
 
 Automate everything:
-Check for Go and Ryelang. If they are not there, notify the user.
-Create a ~/TiddlyLauncher directory.
-Copy all project files.
-Compile Go code (go build).
-Create a launcher shortcut (.desktop for Linux/ChromeOS Flex).
-Adaptation to x86/ARM architecture must be taken into account (e.g. via compilation flags).
+
+- Check for Go and Ryelang. If they are not there, notify the user.
+- Create a ~/TiddlyLauncher directory.
+- Copy all project files.
+- Compile Go code (go build).
+- Create a launcher shortcut (.desktop for Linux/ChromeOS Flex).
+- Adaptation to x86/ARM architecture must be taken into account (e.g. via compilation flags).
 
 Documentation (README.md):
 
-For the user: Step-by-step installation instructions, detailed description of each interface function, examples of complex search queries and Ryelang commands.
-For the developer: Brief description of the architecture and all API endpoints.
+- For the user: Step-by-step installation instructions, detailed description of each interface function, examples of complex search queries and Ryelang commands.
+- For the developer: Brief description of the architecture and all API endpoints.
 
 Final requirement: Give the answer as a single block containing all the above files with their full contents. Use Markdown to separate the files. Don't ask questions, generate the entire project in its most complete and advanced version.
