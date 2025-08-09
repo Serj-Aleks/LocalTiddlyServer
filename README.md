@@ -161,3 +161,6 @@ Documentation (README.md):
 - For the developer: Brief description of the architecture and all API endpoints.
 
 Final requirement: Give the answer as a single block containing all the above files with their full contents. Use Markdown to separate the files. Don't ask questions, generate the entire project in its most complete and advanced version.
+
+---
+Practice immediately showed that there is little fundamental difference between my purely promt and the promt made with bots, to understand that "turnkey" is promised by everyone, but only Google and "professionals" like the Singaporean and Claude do it. Specifying the project configuration is useful, but for such a banal conclusion, which I made with the first promt, it is not important. That is, at the stage of these two promts, thirteen systems participated in the experiment - [[GAIStudio]], [[Gemini]], [[Manus]], [[Claude]], Copilot, MetaAI, Grok, Mistral, ChatGPT, Perlexity, Kimi, DeepSeec and Qwen. Only the first four can be taken into real development and continuation of the experiment. The rest are lying that they can and at most they can be used as a backup for small hints. I will put Mistral above ChatGPT in this list because the Frenchman does not lie, and ChatGPT is above the others because it maintains context in all chats.
